@@ -6,6 +6,7 @@
 #include <QCloseEvent>
 #include <QMap>
 #include <QDate>
+#include "myopenglwidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -36,5 +37,6 @@ private:
 
     Ui::MainWindow *ui;
     QMap<QString, int> completedTasks;
+    MyOpenGLWidget *openGLWidget;
 };
 #endif // MAINWINDOW_H

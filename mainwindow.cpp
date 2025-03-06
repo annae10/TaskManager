@@ -9,6 +9,7 @@
 #include <QTextStream>
 #include <QDate>
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -22,6 +23,9 @@ MainWindow::MainWindow(QWidget *parent)
     loadData();
     loadCompletedTasks();
     updateCompletedTasksDisplay();
+
+
+
 }
 
 MainWindow::~MainWindow()
@@ -199,14 +203,22 @@ void MainWindow::updateCompletedTasksDisplay()
 {
     QDate currentDate = QDate::currentDate();
     QStringList labels;
+
+    int a_,b_,c_,d_,e_;
     for (int i = 0; i < 5; ++i) {
         QDate date = currentDate.addDays(-i);
         QString dateString = date.toString("yyyy-MM-dd");
         int count = completedTasks.value(dateString, 0);
         labels.prepend(QString::number(count));
         //labels << QString::number(count);
+        if(i==4)a_=count;if(i==3)b_=count;if(i==2)c_=count;if(i==1)d_=count;if(i==0)e_=count;
     }
     ui->completedTasksLabel->setText(labels.join(" "));
+
+    openGLWidget = new MyOpenGLWidget(ui->openGLWidget, a_,b_,c_,d_,e_);
+    //openGLWidget = new MyOpenGLWidget(ui->openGLWidget, 0,0,3,2,5);
+    openGLWidget->setGeometry(ui->openGLWidget->rect());
+    openGLWidget->show();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
